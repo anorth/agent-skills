@@ -1,0 +1,17 @@
+# Invariants: State, Validation, and Atomicity
+
+Load for diffs that touch validation boundaries, state transitions, persistence, lifecycle/scheduling, aggregates, or shared collections and indexes.
+
+## Guidance
+
+- **Validate explicitly at the boundary that owns the invariant.** Check identifiers, references, permissions, eligibility, and preconditions where they are first trusted — not incidentally downstream. When a refactor moves, splits, or defers a validation path, enumerate the checks the old path performed and confirm each still runs on every reachable path.
+- **Do not accept correctness- or security-critical values from callers when they can be derived from authoritative state.** Resolve canonical identity rather than trusting a supplied one.
+- **Make state transitions atomic, ordered, and complete.** Trace success, early return, error, retry, rollback, and re-entrant paths: partial updates, double updates, and skipped compensations are the failure modes to hunt. Place resource-availability checks immediately before the update that reserves or consumes; place assertions immediately after the check that makes them safe; publish results only by atomic replacement plus cleanup of incomplete temporaries.
+- **Keep one authoritative representation.** Prefer deriving state over storing a second copy that can disagree. Where a redundant aggregate or index exists, every mutation of a contributing value must update it in the same transition.
+- **Respect lifecycle ordering invariants.** A contribution must not be removed or reversed before it has been added/activated; markers, reservations, and uniqueness claims must live until their full validity window ends; reusable configuration or policy state must survive an item leaving a transient tracking structure.
+- **Apply time and threshold semantics consistently.** Deadlines, expirations, cadences, and boundary comparisons must use one convention across all call sites; use inclusive comparison when the condition still holds exactly at the threshold; include the boundary item when iteration terminates on a predicate about that item unless the API is documented exclusive.
+- **Keep collections, queues, indexes, and cross-references complete, bounded, unique, and ordered.** Assign ordering (and dedup) enforcement to exactly one owner covering all construction paths, so it is neither skipped nor applied twice; reject duplicate registrations instead of silently merging distinct entries; preserve monotonic sequences per originator.
+- **Require determinism and representation safety in calculations.** Be explicit about rounding, precision, units, encoding, and signedness; apply one consistent policy for which contextual inputs feed a deterministic derivation; specify observable operations explicitly when cost or behavior must not depend on an implementation's optimizations.
+- **Handle absence, staleness, and limits conservatively and explicitly.** Treat an absent value as an explicit zero flowing through the common path rather than a special-cased branch; allow legitimate zero/no-op operations instead of rejecting them; set operational limits from benchmarks or a documented capacity model, not intuition.
+- **Do not scope a fix to the reported instance.** When an error-prone pattern is found, audit its analogous uses before declaring the issue resolved.
+- **Document non-obvious conservation or consistency invariants next to the component that maintains them, and test the invariant** rather than only the happy-path output.
