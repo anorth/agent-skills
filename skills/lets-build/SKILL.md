@@ -72,7 +72,7 @@ If new design forks appear mid-build, stop and ask; do not silently pick.
 
 ### 7. Reflect
 
-Load and apply the `reflect` skill to the work – thoughtful rather than quick. Write a message to the user noting that you are now reflecting.
+Load and apply the `reflect` skill to the work – thoughtful rather than quick. Write a message to the user noting that you are now reflecting.
 Load this skill only *after* implementation.
 
 Update the originating issue if the work diverged from what it still says.

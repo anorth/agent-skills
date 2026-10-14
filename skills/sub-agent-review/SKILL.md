@@ -18,7 +18,7 @@ Review local changes through one or more subagents that follow the **review-diff
 
 ## Models
 
-Default: **Kimi K3** → `kimi-k3-high`
+Default: **Claude Opus**
 
 Default effort/reasoning/thinking level: `high` or `medium`, depending on what's offered by the model.
 
@@ -40,12 +40,12 @@ Launch one subagent per model, **in parallel** (single message, multiple Task ca
 2. **Count only, no models named** → take the first *N* from the priority list below.
 3. **Neither count nor models** → priority list item 1 only (Terra).
 
-**Priority list** (for count-only requests; Luna, Opus, Fable, Composer are opt-in only):
-1. `kimi-k3-high`
-2. `gemini-3.7-flash`
-3. `gpt-5.6-terra-medium`
-4. `cursor-grok-4.6-high-fast`
-5. `claude-sonnet-5-thinking-high`
+**Priority list** (for count-only requests):
+1. Claude Opus 
+2. Kimi K3
+3. GPT Sol
+4. Gemini Argon
+5. Muse Spark
 
 If the user asks for more reviews than the priority list provides, use all four and say so.
 

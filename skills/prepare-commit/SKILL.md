@@ -21,6 +21,7 @@ Re-read the issue, task, or any other artifacts that were the starting point for
 
 - Is everything in the issue addressed?
 - Summarise the issue and what changes have been made.
+- Note if the issue should be closed after committing; if so, you should close the issue once a commit is made.
 
 Where we have made decisions that contradict the issue, update the issue so it reflects what was actually built.
 
