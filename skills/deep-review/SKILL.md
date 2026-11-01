@@ -1,39 +1,26 @@
 ---
 name: deep-review
 description: >-
-  Deep, themed review of a diff: one cheap reviewer subagent per theme, using
-  distinctive preferences distilled from Alex North's public GitHub reviews
-  (naming, API shape, errors, tests, coupling, and related themes), with
-  findings checked before reporting. Use when the user asks for a deep review,
-  themed review, or anorth-style review.
+  Deep, themed review of a diff: the review-diff flow and its standard lenses, plus one cheap reviewer subagent
+  per theme, using distinctive preferences distilled from Alex North's public GitHub reviews
+  (naming, API shape, errors, tests, coupling, and related themes). Needs the review-diff skill.
+  Use when the user asks for a deep review, themed review, or anorth-style review.
 disable-model-invocation: false
 ---
 
 # Deep review
 
-The default change set is the working tree against `HEAD`: `git diff HEAD` plus untracked files.
-If that's empty, ask the user for the range.
+Run the `/review-diff` skill's flow with a bigger lens set.
+If `review-diff` isn't available, tell the user and stop.
 
-Read the change set and the surrounding code it depends on.
-Determine which themes are relevant to the diff.
+At its Lenses step, read the change set and decide which themes below are relevant. The lens set is:
 
-Launch one subagent per theme, in parallel, as the `/model-tiers` skill describes,
-on the `cheap` tier and different from the implementer.
-Brief each with the theme file's absolute path, the diff command, and instructions to:
-- review the diff only for issues the theme covers, citing `file:line`, and not edit files;
-- read only as much surrounding code as the change and the theme need:
-  the changed hunks' enclosing functions and types, and the callers, callees, or peer code the theme judges against.
-  Don't read whole files or explore beyond that.
-If a theme subagent fails, retry once, then continue without it and name the missing theme in the output.
+- `review-diff`'s standard lenses, on the `strong` tier, by their absolute paths in `review-diff`'s directory;
+- each theme under **Always**, and each theme under **When the diff matches** that fits the diff,
+  on the `cheap` tier. Pass the theme file's absolute path as the lens.
 
-Check findings before reporting. Cheap reviewers are noisy.
-Open the cited code for each finding and keep it only if it holds.
-Merge findings that share a root cause across themes.
-
-Output the surviving issues in decreasing order of importance, naming the theme each came from.
-Suggest how to resolve them.
-Say how many findings the check dropped, and why.
-Do not apply substantive edits before discussion.
+Everything else follows `review-diff`: models, launch, check, triage, fix, and report.
+Theme reviewers on the `cheap` tier are noisy, so the check step matters most for them.
 
 ## Always
 

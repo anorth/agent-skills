@@ -28,7 +28,7 @@ While editing an existing skill, keep its `disable-model-invocation` value unles
 
 Update the README tables in the same change that adds, removes, or retitles a skill.
 When one skill loads another, keep both sides consistent
-(`lets-build` → `reflect`; `review-diff` and `deep-review` → `model-tiers`).
+(`lets-build` → `reflect`; `deep-review` → `review-diff` → `model-tiers`).
 
 Outside `model-tiers`, skills name a model tier (`cheap`, `standard`, `strong`), never a model or slug.
 The `model-tiers` skill resolves tiers to whatever models the harness offers.
