@@ -14,6 +14,9 @@ Install one skill only:
 npx skills add anorth/agent-skills --skill reflect
 ```
 
+Skills that spawn subagents pick models by tier through `model-tiers`, which reads `~/.agents/model-tiers.md`.
+One list serves every harness; ask an agent to "set up model tiers" to write it.
+
 List what the repo contains:
 
 ```sh
@@ -27,7 +30,6 @@ npx skills add anorth/agent-skills --list
 | Skill | Purpose |
 | --- | --- |
 | `lets-build` | Build from a written issue, with the user clarifying design |
-| `sub-agent-review` | Run `review-diff` via subagents, then triage and fix |
 | `prepare-commit` | Checklist before a commit |
 | `land-to-main` | Land a finished work branch onto local `main` |
 
@@ -36,5 +38,11 @@ npx skills add anorth/agent-skills --list
 | Skill | Purpose |
 | --- | --- |
 | `reflect` | Second pass after implementation: simplify and raise product forks |
-| `review-diff` | Two-pass review of a git diff |
-| `anorth-review` | Review a diff against themed preferences from Alex North's GitHub reviews |
+| `review-diff` | Review a git diff via reviewer subagents on a different model, then triage and fix |
+| `deep-review` | Themed review of a diff, one cheap reviewer per theme, from Alex North's GitHub review preferences |
+
+### Support
+
+| Skill | Purpose |
+| --- | --- |
+| `model-tiers` | Map cheap/standard/strong tiers to available models; keep reviewers off the implementer's model |
