@@ -34,6 +34,13 @@ npx skills add anorth/agent-skills --list
 | `prepare-commit` | Checklist before a commit |
 | `land-to-main` | Land a finished work branch onto local `main` |
 
+### Design
+
+| Skill | Purpose |
+| --- | --- |
+| `grilling` | Interview the user, round by round, until every decision is settled |
+| `domain-modeling` | Sharpen domain terms; keep `GLOSSARY.md` and ADRs current as they come up |
+
 ### Quality
 
 | Skill | Purpose |

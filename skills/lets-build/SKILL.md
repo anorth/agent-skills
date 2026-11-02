@@ -44,13 +44,10 @@ Form your own picture of the problem and plausible solution directions. Do not a
 
 ### 3. Clarify requirements
 
-Ask the user questions until the problem is sharp enough to design against.
+Use the `/grilling` skill until the problem is sharp enough to design against.
 
-- Surface ambiguities, contradictions, and implied scope.
-- Challenge work that looks unnecessary or overcomplicated.
-- Prefer a few pointed questions over a long questionnaire.
-- Use a structured question UI when it fits; otherwise ask conversationally.
-- Stop and wait. Do not implement in this phase.
+- Keep this phase to requirements; design forks come in step 4.
+- Do not implement in this phase.
 
 ### 4. Align on design
 
@@ -62,11 +59,23 @@ User answers override the issue. After a decision lands, update the issue (comme
 
 ### 5. Propose a plan
 
-When you have enough context to sketch a solution with confidence, propose a **brief** plan: approach, main pieces, and anything still assumed.
+When you have enough context to sketch a solution with confidence, propose a **brief** plan:
+approach, main pieces, how we'll know it's done, and anything still assumed.
+
+How we'll know it's done: for each behaviour that matters,
+
+- an observable check that passes or fails;
+- the evidence that would show it (a test, a command and its output, a screenshot, a measured number);
+- the edge cases worth stating as examples.
+
+"It works" isn't a check. Propose checks an agent could verify without asking.
+
+Significant UI changes will necessarily require human review: acknowledge and plan for that.
 
 ### 6. Build
 
 After confirmation: implement the agreed plan. Keep it the minimum that solves the problem.
+Run the done checks before moving on, and show the user their evidence with the result.
 
 If new design forks appear mid-build, stop and ask; do not silently pick.
 
