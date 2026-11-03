@@ -40,6 +40,7 @@ npx skills add anorth/agent-skills --list
 | --- | --- |
 | `grilling` | Interview the user, round by round, until every decision is settled |
 | `domain-modeling` | Sharpen domain terms; keep `GLOSSARY.md` and ADRs current as they come up |
+| `ready-ticket` | What a ticket needs before an agent can build it unattended; check a ticket against it |
 
 ### Quality
 
