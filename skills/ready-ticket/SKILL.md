@@ -44,7 +44,7 @@ The agent will explore the codebase fresh.
 
 ### The design travels with the ticket
 
-A ticket is often one part of a larger change, designed during planning and vetted by the user.
+A ticket is often one part of a larger change, designed and vetted with the user beforehand.
 Give the builder that design, so it builds to it rather than redesigning:
 the interfaces, types, and data shapes, where the change sits (named modules or components, not paths),
 and the decisions behind them, with why.

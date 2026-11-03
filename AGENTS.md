@@ -30,7 +30,11 @@ Call the unit of work a **ticket**; the tool that holds tickets is the **issue t
 
 Update the README tables in the same change that adds, removes, or retitles a skill.
 When one skill loads another, keep both sides consistent:
-- `lets-build` → `grilling`, `reflect`
+- `lets-build` → `ready-ticket`, `lets-design`, `build-ticket`
+- `lets-design` → `grilling`, `design`, `design-it-twice`, `arena`
+- `design-it-twice` → `design` → `ready-ticket`
+- `design-it-twice` → `model-tiers`, when the user asks for other models
+- `arena` → `model-tiers`
 - `build-ticket` → `ready-ticket`, `reflect`, `review-diff`
 - `grilling` → `domain-modeling`
 - `deep-review` → `review-diff` → `model-tiers`
