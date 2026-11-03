@@ -1,6 +1,6 @@
 # Comments & Documentation
 
-Always load. Comments, docs, and nearby comments the diff makes stale.
+Comments, docs, and nearby comments the diff makes stale.
 
 ## Guidance
 

@@ -1,6 +1,6 @@
 # Naming
 
-Always load. Identifiers: fields, methods, types, config keys, packages, files.
+Identifiers: fields, methods, types, config keys, packages, files.
 
 ## Guidance
 

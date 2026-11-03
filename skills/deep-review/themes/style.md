@@ -1,6 +1,6 @@
 # Style: Clarity, Dead Weight, and Ordering
 
-Always load. Recurring objections about redundant code, named constants, declaration order, and locality.
+Recurring objections about redundant code, named constants, declaration order, and locality.
 
 ## Delete what isn't earning its place
 - Remove unused, speculative, or dead code — obsolete fields and flags, boilerplate interface hooks with no behavior, no-op statements, compatibility placeholders — unless it serves a concrete, stated compatibility or migration need. Don't land code or configuration ahead of the change that needs it.
