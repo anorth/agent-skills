@@ -77,7 +77,8 @@ so it doesn't share the author's blind spots.
   If you don't know, say so.
 - Prefer a different model family (Claude, GPT, Gemini, …).
   Where the harness offers one family, a different model in it.
-- Several reviewers doing the same thing each get a distinct model, all different from the implementer.
+- Several reviewers doing the *same* thing each get a distinct model, all different from the implementer.
+  Reviewers with different lenses can share a model.
 - If the tier's line has no qualifying model, look in higher tiers, then lower tiers.
   If none qualify at all, use the implementer's model. Say which in the report.
 - Flag a user-named model that matches the implementer.

@@ -28,26 +28,26 @@ Find the originating ticket, task, or plan, if there is one, so lenses that judg
 
 ## 2. Lenses
 
-Use the lens set the calling skill gives. Otherwise, the standard set, both on the `strong` tier:
+Use the lens set the calling skill gives. Otherwise, the standard set:
 
-- [`lenses/big-picture.md`](lenses/big-picture.md): approach, fit, boundaries, consistency, and the originating work.
-- [`lenses/detail.md`](lenses/detail.md): logic, edge cases, data flow, small-scale consistency.
+- [`lenses/big-picture.md`](lenses/big-picture.md), on the `strong` tier:
+  approach, fit, boundaries, consistency, and the originating work.
+- [`lenses/detail.md`](lenses/detail.md), on the `standard` tier:
+  logic, edge cases, data flow, small-scale consistency.
 
 Brief reviewers with absolute paths: `reviewer.md` and the standard lenses live in this skill's directory
 (`review-diff`'s), whichever skill supplies the lens set.
 
 ## 3. Choose models
 
-For each lens on the `strong` tier:
+For each lens:
 
 - User names models → one reviewer per model.
 - User gives a count → that many reviewers.
 - Otherwise → one reviewer.
 
-Lenses on other tiers get one reviewer each.
-
 Resolve models with the `/model-tiers` skill: named models as the user named them, the rest from the lens's tier.
-Reviewer models follow `/model-tiers`' rules: different from the implementer, distinct per lens.
+Models should be different from the implementer when possible.
 
 ## 4. Launch
 
