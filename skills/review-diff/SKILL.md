@@ -24,7 +24,7 @@ If that's empty (for example, a clean tree on a feature branch),
 ask the user for the range, such as the merge-base with `main`.
 Don't launch reviewers on an empty change set.
 
-Find the originating issue, task, or plan, if there is one, so lenses that judge against it can.
+Find the originating ticket, task, or plan, if there is one, so lenses that judge against it can.
 
 ## 2. Lenses
 
@@ -58,7 +58,7 @@ Brief each with:
 Read and follow <absolute path to review-diff's directory>/reviewer.md.
 Lens: <absolute path to the lens file>
 Review: <diff command, e.g. git diff HEAD, plus any untracked files by path>
-Originating work: <issue/task/plan pointer, or "none">
+Originating work: <ticket/task/plan pointer, or "none">
 ```
 
 Point at the files; don't summarise them into the brief.

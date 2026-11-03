@@ -30,10 +30,11 @@ npx skills add anorth/agent-skills --list
 
 | Skill | Purpose |
 | --- | --- |
-| `lets-build` | Build from a written issue, with the user clarifying design |
+| `ready-ticket` | What a ticket needs before an agent can build it unattended; check a ticket against it |
+| `lets-build` | Build from a written ticket, with the user clarifying design |
 | `build-ticket` | Build one ready ticket unattended, through to a reviewed result with evidence |
-| `prepare-commit` | Checklist before a commit |
-| `land-to-main` | Land a finished work branch onto local `main` |
+| `prepare-commit` | Checklist before a commit; commits if asked |
+| `land-to-main` | Land a finished work branch onto local `main`, and close its tickets |
 
 ### Design
 
@@ -41,7 +42,6 @@ npx skills add anorth/agent-skills --list
 | --- | --- |
 | `grilling` | Interview the user, round by round, until every decision is settled |
 | `domain-modeling` | Sharpen domain terms; keep `GLOSSARY.md` and ADRs current as they come up |
-| `ready-ticket` | What a ticket needs before an agent can build it unattended; check a ticket against it |
 
 ### Quality
 

@@ -4,7 +4,7 @@ Is this the right change, in the right shape, in the right place?
 
 Read broadly: the files touched significantly in full, the modules they plug into,
 and peer files that serve as reference for patterns and conventions.
-If the brief points at an originating issue, task, or plan, read it.
+If the brief points at an originating ticket, task, or plan, read it.
 
 - Does the change do what the originating work asked? Note what it misses, and what it adds that wasn't asked for.
 - Is the approach appropriate for the problem being solved?

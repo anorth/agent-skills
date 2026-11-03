@@ -65,7 +65,19 @@ Use the work branch name or its SHA for `<work-branch-tip>`.
 
 ### 5. Verify
 
-Confirm work branch and `main` are the same commit (e.g. `git rev-parse HEAD` vs `git -C <main-worktree-path> rev-parse HEAD`). Report briefly: branch name, new `main` tip (short SHA + subject), and that checks passed.
+Confirm work branch and `main` are the same commit
+(e.g. `git rev-parse HEAD` vs `git -C <main-worktree-path> rev-parse HEAD`).
+
+### 6. Close tickets
+
+Find the tickets the landed commits resolve (from commit messages, or the ticket this work started from).
+Close each in the project's tracker; skip any that are already closed.
+Leave open any ticket the work only partly addresses.
+
+### 7. Report
+
+Report briefly: branch name, new `main` tip (short SHA + subject), that checks passed,
+and the tickets closed and left open.
 
 ## Hard rules
 

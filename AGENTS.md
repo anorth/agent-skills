@@ -26,6 +26,7 @@ This file is an example.
 For authoring — frontmatter, description, and structure — follow Cursor's `create-skill` skill.
 While editing an existing skill, keep its `disable-model-invocation` value unless the agreed change says otherwise.
 Credit a skill adapted from someone else's with a one-line `metadata.credit` in its frontmatter.
+Call the unit of work a **ticket**; the tool that holds tickets is the **issue tracker**.
 
 Update the README tables in the same change that adds, removes, or retitles a skill.
 When one skill loads another, keep both sides consistent:
