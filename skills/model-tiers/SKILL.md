@@ -2,7 +2,7 @@
 name: model-tiers
 description: >-
   Resolves which model a subagent runs on from three tiers (cheap, standard, strong),
-  listed in the user's ~/.agents/model-tiers.md and matched to what the current harness offers.
+  listed in this skill's defaults or the user's ~/.agents/model-tiers.md, and matched to what the harness offers.
   Use when a skill says to spawn a subagent on a tier, when choosing models for reviewers or verifiers,
   or when the user asks to set up or change model tiers.
 disable-model-invocation: false
@@ -21,17 +21,12 @@ This skill turns a tier, or a model the user names, into a model the current har
 
 ## Config
 
-The user keeps one list for all harnesses in `~/.agents/model-tiers.md`.
+The tiers are one list for all harnesses.
+If `~/.agents/model-tiers.md` exists, it is the config, and replaces the defaults entirely.
+Otherwise the config is [`defaults.md`](defaults.md), in this skill's directory.
+
 Each tier line names models in preference order, by family and version as a person would write them.
 An optional effort in parentheses applies where the harness supports it.
-
-Example:
-
-```markdown
-cheap: Claude Haiku 5.5, Gemini 3.5 Flash
-standard: Claude Sonnet 5.5, GPT-5.6 Terra
-strong: Claude Opus 5.5 (high), GPT-5.6 Sol (high)
-```
 
 Not every harness offers every model. Entries the harness can't run are skipped.
 
@@ -55,14 +50,14 @@ match it against the values the subagent tool accepts: its schema, or the list i
 
 ## Resolve a tier
 
-1. Read the config once per session and take the tier's line.
+1. Read the config once per session, as **Config** describes, and take the tier's line.
 2. Drop entries that don't match an available model.
 3. For a reviewer or verifier, take the first remaining entry that passes **Reviewers differ from the implementer**.
    For anything else, take the first.
 4. If the tool rejects a model, try the next.
    If the line runs out, omit the model so the subagent inherits the parent's, and say so.
-5. If the file or line is missing: ask the user once which model to use for that tier this session,
-   and offer to write it to the config. If you can't ask, omit the model and say so.
+5. If the tier's line is missing: ask the user once which model to use for that tier this session,
+   and offer to add it to `~/.agents/model-tiers.md`. If you can't ask, omit the model and say so.
 
 A model the user names explicitly wins over the config. If it has no match, or the match is ambiguous, ask.
 When the user gives a count larger than the models they name, resolve the rest from the tier the calling skill uses.
@@ -85,7 +80,8 @@ so it doesn't share the author's blind spots.
 
 ## Set up or change tiers
 
-1. List the models the subagent tool accepts. If you can't, ask the user to paste them.
-2. Propose a line per tier, keeping entries the user already has for models this harness doesn't offer.
-   Give `standard` and `strong` at least two families where possible, so a reviewer always has an alternative.
-3. Confirm with the user, then write the file.
+Changes for one environment go in `~/.agents/model-tiers.md`.
+If it doesn't exist yet, copy `defaults.md` there.
+Then ask the user how they'd like it changed, and edit it.
+
+Changes meant for every environment go in `defaults.md` instead.

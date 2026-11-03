@@ -14,8 +14,9 @@ Install one skill only:
 npx skills add anorth/agent-skills --skill reflect
 ```
 
-Skills that spawn subagents pick models by tier through `model-tiers`, which reads `~/.agents/model-tiers.md`.
-One list serves every harness; ask an agent to "set up model tiers" to write it.
+Skills that spawn subagents pick models by tier through `model-tiers`, which ships default tiers.
+To change them for one environment, ask an agent to "set up model tiers":
+it writes `~/.agents/model-tiers.md`, which replaces the defaults.
 `deep-review` runs `review-diff`'s flow, so install it together with `review-diff` and `model-tiers`.
 
 List what the repo contains:
