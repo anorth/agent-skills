@@ -30,6 +30,7 @@ Credit a skill adapted from someone else's with a one-line `metadata.credit` in 
 Update the README tables in the same change that adds, removes, or retitles a skill.
 When one skill loads another, keep both sides consistent:
 - `lets-build` → `grilling`, `reflect`
+- `build-ticket` → `ready-ticket`, `reflect`, `review-diff`
 - `grilling` → `domain-modeling`
 - `deep-review` → `review-diff` → `model-tiers`
 

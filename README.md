@@ -31,6 +31,7 @@ npx skills add anorth/agent-skills --list
 | Skill | Purpose |
 | --- | --- |
 | `lets-build` | Build from a written issue, with the user clarifying design |
+| `build-ticket` | Build one ready ticket unattended, through to a reviewed result with evidence |
 | `prepare-commit` | Checklist before a commit |
 | `land-to-main` | Land a finished work branch onto local `main` |
 
