@@ -27,7 +27,8 @@ Identify the written ticket or task. The user may give an id, URL, file path, or
 If it is unclear which item: ask. Do not guess.
 
 Read the ticket in full. If it doesn't satisfy `/ready-ticket`, load and follow `/lets-design` first,
-then write the agreed design into the ticket.
+then write the agreed design into tickets with `/to-tickets`.
+If that makes more than one ticket, stop there, and suggest which ticket is ready to pick up.
 
 ### 2. Build
 

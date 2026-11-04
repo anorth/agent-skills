@@ -32,6 +32,7 @@ npx skills add anorth/agent-skills --list
 | Skill | Purpose |
 | --- | --- |
 | `ready-ticket` | What a ticket needs before an agent can build it unattended; check a ticket against it |
+| `to-tickets` | Break a settled design into ready tickets: one, or a parent plus child slices with blocking edges |
 | `lets-build` | Build a ticket with the user in the loop, designing it first if it isn't ready |
 | `build-ticket` | Build one ready ticket, unattended by default, through to a reviewed result with evidence |
 | `prepare-commit` | Checklist before a commit; commits if asked |
