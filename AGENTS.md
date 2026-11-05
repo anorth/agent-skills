@@ -13,35 +13,55 @@ Install instructions and the skill list are in the README.
 Author each skill at `skills/<name>/SKILL.md`, with `name` matching the directory.
 Keep notes, themes, and scripts inside that directory.
 
-Cursor's `create-skill` skill describes where an installed copy lives.
-In this repo, the source of truth is `skills/`.
-Consumers install with `npx skills add anorth/agent-skills`.
+```
+skill-name/
+├── SKILL.md              # Required - main instructions
+├── reference.md          # Optional - detailed documentation
+├── examples.md           # Optional - usage examples
+└── scripts/              # Optional - utility scripts
+    ├── validate.py
+    └── helper.sh
+```
 
 The markdown files (and diffs on them) are read by humans too; format them for human readability.
-Break long lines at sentence or clause boundaries to keep lines below ~120 chars.
+Break long lines at sentence or clause boundaries to keep lines below ~120 chars (rough target).
 This file is an example.
 
 ## Changing a skill
 
-For authoring — frontmatter, description, and structure — follow Cursor's `create-skill` skill.
-While editing an existing skill, keep its `disable-model-invocation` value unless the agreed change says otherwise.
+For authoring — frontmatter, description, and structure — follow Cursor's `create-skill` skill if available.
 Credit a skill adapted from someone else's with a one-line `metadata.credit` in its frontmatter.
-Call the unit of work a **ticket**; the tool that holds tickets is the **issue tracker**.
 
 Update the README tables in the same change that adds, removes, or retitles a skill.
-When one skill loads another, keep both sides consistent:
-- `lets-build` → `ready-ticket`, `lets-design`, `to-tickets`, `build-ticket`
-- `to-tickets` → `ready-ticket`
-- `lets-design` → `grilling`, `design`, `design-it-twice`, `arena`
-- `design-it-twice` → `design` → `ready-ticket`
-- `design-it-twice` → `model-tiers`, when the user asks for other models
-- `arena` → `model-tiers`
-- `build-ticket` → `ready-ticket`, `reflect`, `review-diff`
-- `grilling` → `domain-modeling`
-- `deep-review` → `review-diff` → `model-tiers`
+When one skill loads another, keep both sides consistent. Grep for usage in other skills after significant edits.
 
 Outside `model-tiers`, skills name a model tier (`cheap`, `standard`, `strong`), never a model or slug.
 The `model-tiers` skill resolves tiers to whatever models the harness offers.
+
+Every skill that dispatches a subagent says to start it with a fresh context window. 
+Some harnesses fork the parent conversation by default, and a fork inherits the parent's context, 
+which is what the subagent was meant to escape.
+
+## Authoring principles
+
+### 1. Concise is Key
+
+The context window is shared with conversation history, other skills, and requests. Every token competes for space.
+
+**Default assumption**: The agent is already very smart. Only add context it doesn't already have.
+
+Challenge each piece of information:
+- "Does the agent really need this explanation?"
+- "Can I assume the agent knows this?"
+- "Does this paragraph justify its token cost?"
+
+### 2. Automate where possible
+
+Don't make the agent carry out routine logic that doesn't need judgement: script it instead.
+
+## Glossary
+- **ticket**: record of a unit of work
+- **issue tracker**: place where tickets are tracked
 
 <!-- BEGIN BEADS INTEGRATION v:1 profile:minimal hash:46cd31e7 -->
 ## Beads Issue Tracker
@@ -100,4 +120,3 @@ This protocol applies when ending a Beads implementation workflow. It is subordi
 <!-- END BEADS INTEGRATION -->
 
 In a new checkout, run `bd bootstrap && bd hooks install` to set up the issue database and git hooks.
-

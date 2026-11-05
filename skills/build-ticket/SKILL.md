@@ -82,6 +82,6 @@ Report to the user:
 
 1. **Built**: the ticket's title, and what changed.
 2. **Done checks**: each check with its result and its evidence, or where the evidence is.
-3. **Decisions**: defaults you picked, builder's calls you made, and done checks you adapted.
+3. **Assumptions & decisions**: defaults you picked, builder's calls you made, and done checks you adapted.
 4. **Open**: questions from reflection and review, and anything unfinished.
 5. **Human review**: what the ticket asks a person to look at, if anything.

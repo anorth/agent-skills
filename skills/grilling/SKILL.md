@@ -56,4 +56,5 @@ Everything else stays in the conversation.
 ## Finishing
 
 The session is done when the frontier is empty: every branch of the design tree visited, nothing left silently assumed.
+Eliminate "intent debt": the implicit goals, constraints and rationale that may exist in outputs that the user didn't write.
 Do not act on it until the user confirms you have reached a shared understanding.
