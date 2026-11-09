@@ -32,6 +32,7 @@ Format a round like so:
 
 Word each question so "yes" accepts your recommended answer.
 In each question body, say why the decision matters, and give the trade-offs of each choice.
+Clearly distinguish descriptions of how the system currently works from proposals about how it should work.
 
 Challenge as you go: requirements that look unnecessary or overcomplicated, implied scope,
 and contradictions with earlier answers or with the code.
@@ -42,7 +43,7 @@ A question whose answer depends on another question still open in this round bel
 
 Finding _facts_ is your job, never the user's.
 When a frontier question needs a fact from the environment (filesystem, tools, etc.),
-dispatch a sub-agent with a fresh context window to find it; don't ask the user for anything you could look up yourself.
+dispatch a `cheap` sub-agent with a fresh context window to find it; don't ask the user for anything you could look up yourself.
 Don't block on it: a running exploration is an unsettled prerequisite,
 so only the questions downstream of it wait for the sub-agent to report; ask the rest of the frontier now.
 The _decisions_ are the user's: put each to them and wait.

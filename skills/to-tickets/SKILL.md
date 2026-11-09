@@ -39,8 +39,8 @@ Otherwise it gets a parent ticket holding the overall design, with child tickets
 
 ## 4. Draft vertical slices
 
-Break the work into vertical slice tickets, unless the user asks for a different order,
-such as bottom-up or UI-first.
+Prefer breaking the work vertical slices, unless the user asks for a different order,
+or you genuinely think a different sequence is more appropriate for this change.
 
 - Each slice cuts a narrow but COMPLETE path through every layer (schema, API, UI, tests):
   vertical, NOT a horizontal slice of one layer.
