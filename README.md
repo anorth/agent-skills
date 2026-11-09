@@ -62,3 +62,4 @@ npx skills add anorth/agent-skills --list
 | Skill | Purpose |
 | --- | --- |
 | `model-tiers` | Map cheap/standard/strong tiers to available models; keep reviewers off the implementer's model |
+| `markdown-for-humans` | Keep markdown readable by humans, especially in diffs: break lines at sentence and phrase boundaries |

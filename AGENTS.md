@@ -23,8 +23,7 @@ skill-name/
     └── helper.sh
 ```
 
-The markdown files (and diffs on them) are read by humans too; format them for human readability.
-Break long lines at sentence or clause boundaries to keep lines below ~120 chars (rough target).
+Format markdown files by [`markdown-for-humans`](skills/markdown-for-humans/SKILL.md).
 This file is an example.
 
 ## Changing a skill
