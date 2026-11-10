@@ -32,6 +32,8 @@ Don't expand scope from them.
 
 ## 2. Ground in the code
 
+Update your git branch from the repository default to ensure you're looking at the most recent code.
+If the current branch is the default, create a new branch for the implementation unless asked to work directly on main.
 Read the code the ticket touches, to know what the system does today.
 Where the ticket and the code disagree, trust the code for what is true today.
 
