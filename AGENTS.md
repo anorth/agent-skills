@@ -30,6 +30,8 @@ This file is an example.
 
 For authoring — frontmatter, description, and structure — follow Cursor's `create-skill` skill if available.
 Credit a skill adapted from someone else's with a one-line `metadata.credit` in its frontmatter.
+Refer to another skill as `/name`, e.g. "the `/review-diff` skill".
+Don't give a skill the same name as a common harness built-in command; `/name` might invoke the built-in.
 
 Update the README tables in the same change that adds, removes, or retitles a skill.
 When one skill loads another, keep both sides consistent. Grep for usage in other skills after significant edits.

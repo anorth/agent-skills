@@ -11,15 +11,15 @@ disable-model-invocation: false
 # Deep review
 
 Run the `/review-diff` skill's flow with a bigger lens set.
-If `review-diff` isn't available, tell the user and stop.
+If `/review-diff` isn't available, tell the user and stop.
 
 At its Lenses step, read the change set and decide which themes below are relevant. The lens set is:
 
-- `review-diff`'s standard lenses, on their usual tiers, by their absolute paths in `review-diff`'s directory;
+- `/review-diff`'s standard lenses, on their usual tiers, by their absolute paths in `/review-diff`'s directory;
 - each theme under **Always**, and each theme under **When the diff matches** that fits the diff,
   on the `cheap` tier. Pass the theme file's absolute path as the lens.
 
-Everything else follows `review-diff`: models, launch, check, triage, fix, and report.
+Everything else follows `/review-diff`: models, launch, check, triage, fix, and report.
 Theme reviewers on the `cheap` tier are noisy, so the check step matters most for them.
 
 ## Always
