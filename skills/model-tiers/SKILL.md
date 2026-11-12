@@ -1,10 +1,10 @@
 ---
 name: model-tiers
 description: >-
-  Resolves which model a subagent runs on from three tiers (cheap, standard, strong),
-  listed in this skill's defaults or the user's ~/.agents/model-tiers.md, and matched to what the harness offers.
+  Resolves which model a subagent runs on from three tiers (cheap, standard, strong).
+  Models from other families can run through Orca, which drives other harnesses' agents, when it's installed.
   Use when a skill says to spawn a subagent on a tier, when choosing models for reviewers or verifiers,
-  or when the user asks to set up or change model tiers.
+  when a task needs a model from a different family, or when the user asks to set up or change model tiers.
 disable-model-invocation: false
 ---
 
@@ -34,12 +34,23 @@ Not every harness offers every model. Entries the harness can't run are skipped.
 
 Spawn a fresh general-purpose subagent, not a fork of this conversation.
 A fork may ignore the model and carries the implementer's context.
-If the harness has no subagent tool, tell the user and stop; don't do the subagent's work inline.
+If there is no way to spawn one, tell the user and stop; don't do the subagent's work inline.
+
+A model can be reachable two ways:
+
+- **Built-in**: the harness's own subagent tool. It usually offers one family, or a few close ones.
+- **Orca**: if `orca` is installed, it runs fresh workers in other harnesses' CLI agents (Codex, Grok, Claude Code).
+  The `/orca-subagents` skill says how to start workers and collect results.
+
+Use built-in when it offers the model you resolved, else use Orca.
+
+Some subagents report asynchronously. Start them all, then wait until every one has reported before going on.
 
 ## Match a model name
 
 To turn a config entry or a name the user gives ("Opus", "GPT") into a model,
 match it against the values the subagent tool accepts: its schema, or the list in a rejection message.
+If Orca is installed, also match against the slugs defined by `/orca-subagents`.
 
 - Cursor-style tools take full slugs, which encode effort: pick the slug for that model and effort.
 - Claude Code-style tools take an alias (`opus`, `sonnet`, …) and a separate effort parameter.
@@ -51,7 +62,7 @@ match it against the values the subagent tool accepts: its schema, or the list i
 ## Resolve a tier
 
 1. Read the config once per session, as **Config** describes, and take the tier's line.
-2. Drop entries that don't match an available model.
+2. Drop entries that don't match a model available built-in or through Orca.
 3. For a reviewer or verifier, take the first remaining entry that passes **Reviewers differ from the implementer**.
    For anything else, take the first.
 4. If the tool rejects a model, try the next.

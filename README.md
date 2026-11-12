@@ -17,6 +17,7 @@ npx skills add anorth/agent-skills --skill reflect
 Skills that spawn subagents pick models by tier through `model-tiers`, which ships default tiers.
 To change them for one environment, ask an agent to "set up model tiers":
 it writes `~/.agents/model-tiers.md`, which replaces the defaults.
+`model-tiers` runs other harnesses' models through `orca-subagents` when [Orca](https://github.com/stablyai/orca) is installed.
 `deep-review` runs `review-diff`'s flow, so install it together with `review-diff` and `model-tiers`.
 
 List what the repo contains:
@@ -62,4 +63,5 @@ npx skills add anorth/agent-skills --list
 | Skill | Purpose |
 | --- | --- |
 | `model-tiers` | Map cheap/standard/strong tiers to available models; keep reviewers off the implementer's model |
+| `orca-subagents` | Run a subagent through Orca on a model only another harness's CLI agent offers |
 | `markdown-for-humans` | Keep markdown readable by humans, especially in diffs: break lines at sentence and phrase boundaries |

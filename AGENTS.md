@@ -36,7 +36,7 @@ Don't give a skill the same name as a common harness built-in command; `/name` m
 Update the README tables in the same change that adds, removes, or retitles a skill.
 When one skill loads another, keep both sides consistent. Grep for usage in other skills after significant edits.
 
-Outside `model-tiers`, skills name a model tier (`cheap`, `standard`, `strong`), never a model or slug.
+Outside `model-tiers` and `orca-subagents`, skills name a model tier (`cheap`, `standard`, `strong`), never a model or slug.
 The `model-tiers` skill resolves tiers to whatever models the harness offers.
 
 Every skill that dispatches a subagent says to start it with a fresh context window. 
