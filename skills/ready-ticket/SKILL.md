@@ -13,6 +13,7 @@ metadata:
 
 A ticket is ready when an agent can build it, prove it, and stop, without asking anyone anything.
 A ready ticket provides the authoritative specification the agent works from.
+The `ready-for-agent` state (see `/ticket-states`) marks a ready ticket whose design a human has also approved.
 
 Note that some tickets might be questions, investigations, placeholders, or actions other than development.
 They're still fine as tickets; this spec doesn't apply to them.

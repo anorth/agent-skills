@@ -41,6 +41,8 @@ Where the ticket and the code disagree, trust the code for what is true today.
 
 Run the readiness check in the `/ready-ticket` skill.
 If any answer is no, stop: report which answers are no and what's missing, and release the claim.
+Unless the only no is an open blocker, also set the ticket's state to `needs-design` (see `/ticket-states`),
+with what's missing in the ticket's note.
 Don't fill gaps with guesses.
 
 If the user is in the loop, confirm the approach with them against the ticket's design and done checks,
@@ -59,7 +61,10 @@ Always stop, rather than picking a default, when:
 - the ticket turns out too big for one session: don't silently trim scope;
 - a decision would change user-visible behaviour or be hard to reverse, and the ticket doesn't settle it.
 
-Unattended, report why and hand off. In the loop, ask the user and continue with their answer.
+Unattended, report why, set the ticket's state (see `/ticket-states`), release the claim, and hand off:
+`needs-design` when it needs redesign or splitting, `needs-human` for a decision.
+Say why in the ticket's note, with the question for `needs-human`.
+In the loop, ask the user and continue with their answer.
 
 Run typechecking regularly, single test files regularly, and the full test suite once at the end.
 
@@ -79,6 +84,7 @@ Re-run any done check whose evidence the changes since step 5 could affect.
 
 Don't commit. Don't close the ticket: tickets close only when the change lands on `main`.
 Add a short note to the ticket: what was built, the done-check results, and decisions you made.
+Set its state to `needs-review` (see `/ticket-states`), and keep the claim.
 
 Report to the user:
 

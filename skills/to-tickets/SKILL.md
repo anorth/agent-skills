@@ -92,6 +92,8 @@ If the project has no tracker, ask the user where tickets go.
 - Publish in dependency order (blockers first), so each ticket's blocking edges can reference real identifiers.
   Use the tracker's native parent and blocking relationships where it has them;
   otherwise list them in the ticket's **Context** and **Blocked by**.
+- Set each published ticket's state to `ready-for-agent` (see `/ticket-states`): the single ticket, or each child.
+  The parent carries no state: clear any it had.
 - If the source was an existing rough ticket, rewrite it into the single ticket or the parent,
   keeping its original text in a note.
 

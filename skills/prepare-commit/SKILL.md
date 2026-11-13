@@ -45,7 +45,8 @@ Don't run a full production build unless the project documents that as the check
 - Write a message saying what changed and why, and reference the ticket, if there is one.
 - Don't bypass hooks (`--no-verify`). If a hook fails or changes files, stop and report.
 - Afterwards, check `git status`, and report the branch status and anything left uncommitted.
-- If you committed on `main` itself and the change completes the ticket, close the ticket.
+- If you committed on `main` itself and the change completes the ticket,
+  close the ticket and clear its state (see `/ticket-states`).
   Otherwise leave it open.
 
 ## Hard rules

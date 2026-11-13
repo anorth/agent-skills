@@ -71,7 +71,7 @@ Confirm work branch and `main` are the same commit
 ### 6. Close tickets
 
 Find the tickets the landed commits resolve (from commit messages, or the ticket this work started from).
-Close each in the project's tracker; skip any that are already closed.
+Close each in the project's tracker, and clear its state (see `/ticket-states`); skip any that are already closed.
 Leave open any ticket the work only partly addresses.
 
 ### 7. Report
