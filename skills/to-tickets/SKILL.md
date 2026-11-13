@@ -95,7 +95,7 @@ If the project has no tracker, ask the user where tickets go.
 - Set each published ticket's state to `ready-for-agent` (see `/ticket-states`): the single ticket, or each child.
   The parent carries no state: clear any it had.
 - If the source was an existing rough ticket, rewrite it into the single ticket or the parent,
-  keeping its original text in a note.
+  as `/ticket-states` says under **Changing a brief**.
 
 For example, in Beads: the parent is an epic with the overall design in its `design` field.
 Each child is created with `--parent`, with its slice of the design in `design` and its done checks in `acceptance`;

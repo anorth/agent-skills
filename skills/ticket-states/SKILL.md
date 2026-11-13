@@ -2,8 +2,8 @@
 name: ticket-states
 description: >-
   A small shared vocabulary of ticket states that say who acts next: needs design, ready for an agent,
-  needs a human, needs review.
-  Use when filing, triaging, or labelling tickets, when a skill sets or clears a ticket's state,
+  needs a human, needs review; and how to record a change to a ticket's brief.
+  Use when filing, triaging, or labelling tickets, when a skill sets or clears a ticket's state or changes its brief,
   or when the user asks what needs design, review, or their attention, or what's ready for an agent.
 disable-model-invocation: false
 metadata:
@@ -38,6 +38,13 @@ These states record only what the tracker can't: whether a ticket is designed, a
   A ticket the user names directly needs no state.
 - To answer a `needs-human` ticket, add a note with the answer, then set the next state:
   `ready-for-agent` if the design stands, `needs-design` if it must be redesigned or split.
+
+## Changing a brief
+
+Never lose a ticket's original text.
+
+- When a decision contradicts a ready ticket, keep its brief and append a note saying what changed and why.
+- When rewriting a rough ticket into a ready one, the new brief replaces it; keep the original text in a note.
 
 ## Names
 

@@ -37,4 +37,4 @@ Build with the `/build-ticket` skill, with the user in the loop.
 ## Guidelines
 
 The user is the authority on what the system should do: their answers override the ticket.
-When they do, keep the ticket's original brief and append a note saying what changed and why.
+When they do, record the change as `/ticket-states` says under **Changing a brief**.

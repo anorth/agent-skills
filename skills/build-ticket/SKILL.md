@@ -35,6 +35,7 @@ Don't expand scope from them.
 Update your git branch from the repository default to ensure you're looking at the most recent code.
 If the current branch is the default, create a new branch for the implementation unless asked to work directly on main.
 Read the code the ticket touches, to know what the system does today.
+Read the project's glossary and the ADRs in the area, if it has them: a ready ticket doesn't restate them.
 Where the ticket and the code disagree, trust the code for what is true today.
 
 ## 3. Check it's ready

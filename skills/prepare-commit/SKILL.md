@@ -24,8 +24,8 @@ Re-read the ticket, task, or any other artifacts that were the starting point fo
 - Summarise the ticket and what changes have been made.
 - Note whether this change completes the ticket.
 
-Where we have made decisions that contradict the ticket, keep the original brief
-and append a note saying what changed and why.
+Where we have made decisions that contradict the ticket,
+record them as `/ticket-states` says under **Changing a brief**.
 
 If there is no written starting point, say so and continue.
 

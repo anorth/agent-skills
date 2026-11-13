@@ -52,11 +52,8 @@ Include all important decisions an implementer must follow to realise the design
 
 ## Done checks
 
-*How we'll know it's done (in brief). For each behaviour that matters:
-an observable check that passes or fails;
-the evidence that would show it (a test, a command and its output, a screenshot, a measured number);
-and the edge cases worth stating as examples.
-"It works" isn't a check: write checks an agent could verify without asking.
+*How we'll know it's done (in brief): a done check, with its evidence, for each behaviour that matters,
+as the `/ready-ticket` skill describes them.
 Significant UI changes need human review: say so.*
 
 ## Synthesis decision
