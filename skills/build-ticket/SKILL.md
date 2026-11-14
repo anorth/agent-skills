@@ -2,7 +2,7 @@
 name: build-ticket
 description: >-
   Builds one ready ticket through to a reviewed result with evidence, unattended unless the user asks to be in the loop:
-  checks it's ready, builds to its design, runs its done checks, reflects, reviews, and reports.
+  checks it's ready, builds to its design, runs its done checks, reflects, reviews, has it verified, and reports.
   Use when the user asks to build, implement, or pick up a ticket.
 disable-model-invocation: false
 metadata:
@@ -12,7 +12,7 @@ metadata:
 # Build ticket
 
 Implement the work described by a ticket, and stop with a result the user can review:
-built, checked, reflected on, reviewed, and with evidence for each done check.
+built, checked, reflected on, reviewed, independently verified, and with evidence for each done check.
 Work unattended by default. Stop early only where this skill says to.
 
 If the user asks to be in the loop (e.g. "with me", "let's collaborate"),
@@ -43,7 +43,7 @@ Where the ticket and the code disagree, trust the code for what is true today.
 Run the readiness check in the `/ready-ticket` skill.
 If any answer is no, stop: report which answers are no and what's missing, and release the claim.
 Unless the only no is an open blocker, also set the ticket's state to `needs-design` (see `/ticket-states`),
-with what's missing in the ticket's note.
+with what's missing in a comment on the ticket.
 Don't fill gaps with guesses.
 
 If the user is in the loop, confirm the approach with them against the ticket's design and done checks,
@@ -64,7 +64,7 @@ Always stop, rather than picking a default, when:
 
 Unattended, report why, set the ticket's state (see `/ticket-states`), release the claim, and hand off:
 `needs-design` when it needs redesign or splitting, `needs-human` for a decision.
-Say why in the ticket's note, with the question for `needs-human`.
+Say why in a comment on the ticket, with the question for `needs-human`.
 In the loop, ask the user and continue with their answer.
 
 Run typechecking regularly, single test files regularly, and the full test suite once at the end.
@@ -81,16 +81,35 @@ Apply the `/reflect` skill, then the `/review-diff` skill.
 Carry their open questions and design questions into the report.
 Re-run any done check whose evidence the changes since step 5 could affect.
 
-## 7. Hand off
+## 7. Verify
+
+Comment on the ticket (see `/ticket-states`) with an `Implementer: <your model>` line, the decisions you made,
+and the done checks you adapted, so the verifier checks against the ticket you built to.
+Record any changes to the brief as `/ticket-states` says under **Changing a brief**.
+Leave out your evidence and results.
+Then apply the `/verify-ticket` skill.
+
+- **FAIL**: reproduce each failed check yourself, and fix the ones you can confirm.
+  Treat the fix as steps 5 and 6 do: re-run the done checks it could affect, then reflect and review it.
+  Comment any new decisions on the ticket, then apply `/verify-ticket` once more, with a fresh verifier.
+  If it still fails, or you dispute the verdict, set the ticket's state to `needs-human`,
+  with the failing checks and any rebuttal in a comment. Never override a verdict.
+- **INCONCLUSIVE**: no fix round.
+
+Then hand off.
+
+## 8. Hand off
 
 Don't commit. Don't close the ticket: tickets close only when the change lands on `main`.
-Add a short note to the ticket: what was built, the done-check results, and decisions you made.
-Set its state to `needs-review` (see `/ticket-states`), and keep the claim.
+Comment on the ticket: what was built, and the done-check results.
+Unless step 7 set `needs-human`, set its state to `needs-review` (see `/ticket-states`). Keep the claim.
 
-Report to the user:
+Report to the user. If the verdict is INCONCLUSIVE, say so and why before anything else.
 
 1. **Built**: the ticket's title, and what changed.
 2. **Done checks**: each check with its result and its evidence, or where the evidence is.
-3. **Assumptions & decisions**: defaults you picked, builder's calls you made, and done checks you adapted.
-4. **Open**: questions from reflection and review, and anything unfinished.
-5. **Human review**: what the ticket asks a person to look at, if anything.
+3. **Verification**: the verdict and the verifier's model; each check's result, surface, and evidence;
+   and what stronger verification would need.
+4. **Assumptions & decisions**: defaults you picked, builder's calls you made, and done checks you adapted.
+5. **Open**: questions from reflection and review, and anything unfinished.
+6. **Human review**: what the ticket asks a person to look at, if anything.

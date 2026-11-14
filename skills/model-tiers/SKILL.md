@@ -16,8 +16,8 @@ This skill turns a tier, or a model the user names, into a model the current har
 ## Tiers
 
 - **cheap**: high-volume, narrow work. One theme of a themed review, scanning, summarising.
-- **standard**: routine implementation and review.
-- **strong**: judgment. Design, coordination, triage, reviewing or verifying others' work, the hardest changes.
+- **standard**: routine implementation, review, and verifying done checks.
+- **strong**: judgment. Design, coordination, triage, reviewing others' work, the hardest changes.
 
 ## Config
 

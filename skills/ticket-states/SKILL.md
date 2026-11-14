@@ -23,12 +23,14 @@ These states record only what the tracker can't: whether a ticket is designed, a
 | *(none)* | Untriaged: nobody has looked at it | | whoever triages it |
 | `needs-design` | Real work; design is the next step | whoever triages it; `/build-ticket` stopping for redesign | `/to-tickets` |
 | `ready-for-agent` | Designed and approved by a human; an agent may pick it up | `/to-tickets`; a human answering | `/build-ticket` |
-| `needs-human` | An agent needs a decision or an answer; the ticket's note says what | `/build-ticket` stopping on a question | whoever answers it |
+| `needs-human` | An agent needs a decision or an answer; a comment on the ticket says what | `/build-ticket` stopping on a question, or on a failed verification it can't fix | whoever answers it |
 | `needs-review` | Built with evidence, still claimed, not yet landed | `/build-ticket` hand-off | closing the ticket |
 
 ## Rules
 
 - A ticket has at most one state: setting one removes any other. Closing a ticket removes its state.
+- The table names the usual setters, not the only allowed transitions.
+  Set whichever state says who acts next, except as the `ready-for-agent` rule below says.
 - Parent tickets carry no state; their children do. A parent not yet designed may be `needs-design`.
 - Tickets are often filed with no state. An agent may triage them for the user,
   setting any state except `ready-for-agent`, e.g. `needs-design` for work still to be designed.
@@ -36,8 +38,9 @@ These states record only what the tracker can't: whether a ticket is designed, a
   or the user answering a `needs-human` ticket. It records that a human approved the design.
 - An agent choosing its own work picks only open, unblocked `ready-for-agent` tickets.
   A ticket the user names directly needs no state.
-- To answer a `needs-human` ticket, add a note with the answer, then set the next state:
-  `ready-for-agent` if the design stands, `needs-design` if it must be redesigned or split.
+- To answer a `needs-human` ticket, comment with the answer, then set the state that says who acts next:
+  for example `ready-for-agent` if the design stands, `needs-design` if it must be redesigned or split,
+  or `needs-review` if the built change stands.
 
 ## Changing a brief
 
@@ -45,6 +48,13 @@ Never lose a ticket's original text.
 
 - When a decision contradicts a ready ticket, keep its brief and append a note saying what changed and why.
 - When rewriting a rough ticket into a ready one, the new brief replaces it; keep the original text in a note.
+
+## Comments
+
+Record work on a ticket as comments on it: decisions made while building, why work stopped, questions and answers,
+verification verdicts, hand-off results.
+They're the ticket's discussion; the brief and notes stay what to build.
+In a tracker without comments, append to the ticket's notes instead.
 
 ## Names
 
@@ -65,6 +75,7 @@ e.g. `needs-human`: `bd update <id> --add-label human --remove-label needs-desig
 Clear it: `bd update <id> --remove-label needs-design,ready-for-agent,human,needs-review`.
 Don't use `--set-labels`: it also removes labels that aren't states.
 Add a note with `bd update <id> --append-notes "<text>"`; `--notes` replaces the existing notes.
+Add a comment with `bd comments add <id> "<text>"`; list them with `bd comments <id>`.
 
 A child created with `--parent` inherits its parent's labels, state included, and labels given at create add to them.
 Set the child's state with `bd update` after creating it.

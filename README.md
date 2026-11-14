@@ -36,7 +36,7 @@ npx skills add anorth/agent-skills --list
 | `ticket-states` | Shared ticket states saying who acts next: needs design, ready for an agent, needs a human, needs review; how to record a change to a brief |
 | `to-tickets` | Break a settled design into ready tickets: one, or a parent plus child slices with blocking edges |
 | `lets-build` | Build a ticket with the user in the loop, designing it first if it isn't ready |
-| `build-ticket` | Build one ready ticket, unattended by default, through to a reviewed result with evidence |
+| `build-ticket` | Build one ready ticket, unattended by default, through to a reviewed, verified result with evidence |
 | `prepare-commit` | Checklist before a commit; commits if asked |
 | `land-to-main` | Land a finished work branch onto local `main`, and close its tickets |
 
@@ -58,6 +58,7 @@ npx skills add anorth/agent-skills --list
 | `reflect` | Second pass after implementation: simplify and raise product forks |
 | `review-diff` | Review a git diff via big-picture and detail reviewer subagents, then check, triage, and fix |
 | `deep-review` | `review-diff` plus one cheap reviewer per theme, from Alex North's GitHub review preferences |
+| `verify-ticket` | Re-run a ticket's done checks as a non-author, on the best surface available; a verdict with evidence |
 
 ### Support
 
