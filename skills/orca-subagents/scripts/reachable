@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# Reports whether Orca is reachable and which agent CLIs it can run here: installed and signed in.
+# One line per check. Exits 0 if Orca is reachable and at least one agent is signed in, else 1.
+# Covers the agents in SKILL.md's "Agents and models" table; add a check when a row is added.
+
+orca_cmd="${ORCA_CLI_COMMAND:-orca}"
+# Each check is bounded, even run from a terminal:
+# --foreground, or a CLI that touches the terminal stops timeout's whole process group, timeout included;
+# output via a file, so a helper process the CLI leaves behind can't hold a pipe open.
+t() {
+  local out; out="$(mktemp)"
+  timeout --foreground -k 5 15 "$@" </dev/null >"$out" 2>&1
+  cat "$out"; rm -f "$out"
+}
+
+if ! command -v "$orca_cmd" >/dev/null; then
+  echo "orca: not installed"
+  exit 1
+fi
+if t "$orca_cmd" status | grep -q '^runtimeReachable: true'; then
+  echo "orca: reachable"
+else
+  echo "orca: not reachable (run \`$orca_cmd status\`)"
+  exit 1
+fi
+
+any=0
+report() { # agent, signed-in?, detail
+  if [ "$2" = yes ]; then any=1; echo "$1: signed in${3:+ ($3)}"; else echo "$1: ${3:-not signed in}"; fi
+}
+
+if ! command -v claude >/dev/null; then report claude no "not installed"
+elif t claude auth status | grep -q '"loggedIn": *true'; then report claude yes
+else report claude no
+fi
+
+if ! command -v codex >/dev/null; then report codex no "not installed"
+elif t codex login status | grep -qi '^logged in'; then report codex yes
+else report codex no
+fi
+
+if ! command -v grok >/dev/null; then report grok no "not installed"
+else
+  out="$(t grok models)"
+  if grep -qi 'not authenticated' <<<"$out" || ! grep -qi 'logged in' <<<"$out"; then
+    report grok no "not signed in (run \`grok login\`)"
+  else
+    models="$(sed -n 's/^ *[-*] \([^ ]*\).*/\1/p' <<<"$out" | paste -sd, - | sed 's/,/, /g')"
+    report grok yes "${models:+models: $models}"
+  fi
+fi
+
+if ! command -v cursor-agent >/dev/null; then report cursor no "not installed"
+elif t cursor-agent status | grep -qi 'logged in as'; then report cursor yes
+else report cursor no "not signed in (run \`cursor-agent login\`)"
+fi
+
+[ "$any" = 1 ]

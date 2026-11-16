@@ -2,7 +2,7 @@
 name: model-tiers
 description: >-
   Resolves which model a subagent runs on from three tiers (cheap, standard, strong).
-  Models from other families can run through Orca, which drives other harnesses' agents, when it's installed.
+  Models the harness doesn't offer can run through an orchestrator that drives other harnesses' agents, such as Orca.
   Use when a skill says to spawn a subagent on a tier, when choosing models for reviewers or verifiers,
   when a task needs a model from a different family, or when the user asks to set up or change model tiers.
 disable-model-invocation: false
@@ -32,17 +32,20 @@ Not every harness offers every model. Entries the harness can't run are skipped.
 
 ## Spawning
 
-Spawn a fresh general-purpose subagent, not a fork of this conversation.
+Start each subagent with a fresh context window, not a fork of this conversation.
 A fork may ignore the model and carries the implementer's context.
 If there is no way to spawn one, tell the user and stop; don't do the subagent's work inline.
 
 A model can be reachable two ways:
 
 - **Built-in**: the harness's own subagent tool. It usually offers one family, or a few close ones.
-- **Orca**: if `orca` is installed, it runs fresh workers in other harnesses' CLI agents (Codex, Grok, Claude Code).
-  The `/orca-subagents` skill says how to start workers and collect results.
+- **Orchestrator**: a tool that runs fresh workers in other harnesses' CLI agents.
+  Each has a skill that says how to check it's reachable, which models it offers, and how to start workers and collect results:
+  - Orca: the `/orca-subagents` skill, if `orca` is installed.
 
-Use built-in when it offers the model you resolved, else use Orca.
+The model decides the mechanism, not the other way round.
+Resolve against everything reachable, then use built-in if it offers the model, else the orchestrator that does.
+Never pass over a model because reaching it needs an orchestrator.
 
 Some subagents report asynchronously. Start them all, then wait until every one has reported before going on.
 
@@ -50,7 +53,7 @@ Some subagents report asynchronously. Start them all, then wait until every one 
 
 To turn a config entry or a name the user gives ("Opus", "GPT") into a model,
 match it against the values the subagent tool accepts: its schema, or the list in a rejection message.
-If Orca is installed, also match against the slugs defined by `/orca-subagents`.
+Also match against the models each reachable orchestrator's skill lists.
 
 - Cursor-style tools take full slugs, which encode effort: pick the slug for that model and effort.
 - Claude Code-style tools take an alias (`opus`, `sonnet`, …) and a separate effort parameter.
@@ -62,12 +65,14 @@ If Orca is installed, also match against the slugs defined by `/orca-subagents`.
 ## Resolve a tier
 
 1. Read the config once per session, as **Config** describes, and take the tier's line.
-2. Drop entries that don't match a model available built-in or through Orca.
-3. For a reviewer or verifier, take the first remaining entry that passes **Reviewers differ from the implementer**.
+2. Once per session, find what's reachable: the built-in tool's models,
+   and, for each installed orchestrator, the models its skill says it reaches here.
+3. Drop entries that match nothing reachable.
+4. For a reviewer or verifier, take the first remaining entry that passes **Reviewers differ from the implementer**.
    For anything else, take the first.
-4. If the tool rejects a model, try the next.
+5. If the tool rejects a model, try the next.
    If the line runs out, omit the model so the subagent inherits the parent's, and say so.
-5. If the tier's line is missing: ask the user once which model to use for that tier this session,
+6. If the tier's line is missing: ask the user once which model to use for that tier this session,
    and offer to add it to `~/.agents/model-tiers.md`. If you can't ask, omit the model and say so.
 
 A model the user names explicitly wins over the config. If it has no match, or the match is ambiguous, ask.
@@ -82,7 +87,7 @@ so it doesn't share the author's blind spots.
   this session's model if you wrote it, or the model given to the implementing subagent.
   If you don't know, say so.
 - Prefer a different model family (Claude, GPT, Gemini, …).
-  Where the harness offers one family, a different model in it.
+  Where only one family is reachable, built-in and through orchestrators, a different model in it.
 - Several reviewers doing the *same* thing each get a distinct model, all different from the implementer.
   Reviewers with different lenses can share a model.
 - If the tier's line has no qualifying model, look in higher tiers, then lower tiers.
