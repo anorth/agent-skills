@@ -37,7 +37,7 @@ Update the README tables in the same change that adds, removes, or retitles a sk
 When one skill loads another, keep both sides consistent. Grep for usage in other skills after significant edits.
 Write each concept that several skills share once, in the skill that owns it; the others refer to it by `/name`.
 
-Outside `model-tiers` and `orca-subagents`, skills name a model tier (`cheap`, `standard`, `strong`), never a model or slug.
+Outside `model-tiers` and `orca-workers`, skills name a model tier (`cheap`, `standard`, `strong`), never a model or slug.
 The `model-tiers` skill resolves tiers to whatever models the harness offers.
 
 Every skill that dispatches a subagent says to start it with a fresh context window. 

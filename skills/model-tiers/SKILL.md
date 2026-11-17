@@ -52,7 +52,7 @@ A model can be reachable two ways:
 - **Built-in**: the harness's own subagent tool. It usually offers one family, or a few close ones.
 - **Orchestrator**: a tool that runs fresh workers in other harnesses' CLI agents.
   Each has a skill that says how to check it's reachable, which models it offers, and how to start workers and collect results:
-  - Orca: the `/orca-subagents` skill, if `orca` is installed.
+  - Orca: the `/orca-workers` skill, if `orca` is installed.
 
 The model decides the mechanism, not the other way round.
 Resolve against everything reachable, then use built-in if it offers the model, else the orchestrator that does.
