@@ -26,7 +26,7 @@ Inside an Orca session, `$ORCA_CLI_COMMAND` names the executable if `orca` isn't
 
 ## Agents and models
 
-Pick the agent by model family, and pass the model's slug as `--model` and the tier entry's effort as `--effort`.
+Pick the agent by model family, and pass the model's slug as `--model` and the effort `/model-tiers` chose as `--effort`.
 Slugs follow each family's pattern, so infer one not listed here from its name, e.g. GPT-6.2 Terra → `gpt-6.2-terra`.
 These were current at 2026-11; the list may drift.
 

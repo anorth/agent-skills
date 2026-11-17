@@ -3,8 +3,9 @@ name: model-tiers
 description: >-
   Resolves which model a subagent runs on from three tiers (cheap, standard, strong).
   Models the harness doesn't offer can run through an orchestrator that drives other harnesses' agents, such as Orca.
-  Use when a skill says to spawn a subagent on a tier, when choosing models for reviewers or verifiers,
-  when a task needs a model from a different family, or when the user asks to set up or change model tiers.
+  Use when a skill says to spawn a subagent on a tier, when choosing a model for any subagent or worker
+  (a builder, a reviewer, a verifier), when a task needs a model from a different family,
+  or when the user asks to set up or change model tiers.
 disable-model-invocation: false
 ---
 
@@ -17,7 +18,9 @@ This skill turns a tier, or a model the user names, into a model the current har
 
 - **cheap**: high-volume, narrow work. One theme of a themed review, scanning, summarising.
 - **standard**: routine implementation, review, and verifying done checks.
-- **strong**: judgment. Design, coordination, triage, reviewing others' work, the hardest changes.
+- **strong**: judgment. Design, coordination, triage, the hardest changes.
+
+When the caller names no tier or model, choose a tier from these.
 
 ## Config
 
@@ -29,6 +32,14 @@ Each tier line names models in preference order, by family and version as a pers
 An optional effort in parentheses applies where the harness supports it.
 
 Not every harness offers every model. Entries the harness can't run are skipped.
+
+## Effort
+
+A tier entry's effort is the default.
+Lower it one step for small, fully specified work: a ready ticket (see `/ready-ticket`)
+whose design leaves nothing to the builder's judgement and whose change touches a few files,
+or is largely mechanical.
+Keep the default for review and verification.
 
 ## Spawning
 
