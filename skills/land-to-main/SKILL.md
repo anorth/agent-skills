@@ -13,7 +13,9 @@ Land the current work branch onto **local `main`**. Remotes are out of scope —
 ## Preconditions (fail fast)
 
 1. **Not on `main`**: if `HEAD` is `main`, refuse and stop.
-2. **Clean tree**: if there are uncommitted changes (staged or unstaged), stop. Do not commit as part of landing.
+2. **Uncommitted changes**: a request to land counts as a request to commit.
+   If there are uncommitted changes (staged or unstaged), commit them by `/prepare-commit` first.
+   If it stops (unrelated changes, failed checks or hooks), stop too.
 3. **Already landed**: if work branch and `main` point at the same commit, report that and stop (nothing to do).
 
 ## Workflow
@@ -82,7 +84,8 @@ and the tickets closed and left open.
 ## Hard rules
 
 - Local `main` only — no remote fetch/pull/push.
-- Do not commit, amend, squash, or otherwise rewrite history unless the user explicitly asks.
+- Commit only the uncommitted work being landed (precondition 2).
+- Do not amend, squash, or otherwise rewrite history unless the user explicitly asks.
 - Do not delete branches.
 - End on the work branch, with `main` fast-forwarded to match.
 - If unsure how to proceed: stop and wait for the user.
