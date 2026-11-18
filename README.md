@@ -59,6 +59,7 @@ npx skills add anorth/agent-skills --list
 | `review-diff` | Review a git diff via big-picture and detail reviewer subagents, then check, triage, and fix |
 | `deep-review` | `review-diff` plus one cheap reviewer per theme, from Alex North's GitHub review preferences |
 | `verify-ticket` | Re-run a ticket's done checks as a non-author, on the best surface available; a verdict with evidence |
+| `setup-verification` | Build and prove a project's verification kit: a driver CLI that launches and drives the app, journeys over a feature map, and the `verify-<app>` skill documenting them |
 
 ### Support
 

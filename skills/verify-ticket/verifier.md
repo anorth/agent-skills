@@ -20,7 +20,8 @@ Your brief names the ticket, the change, the implementer's model, and an evidenc
 
 For each check, use the strongest of these that can show its outcome:
 
-1. A project-local skill or documented procedure that drives the app.
+1. A project-local skill or documented procedure that drives the app,
+   such as a `verify-<app>` skill: follow its launch, doctor, and cleanup, and its feature map's recipes.
 2. The repo's own harnesses: e2e specs, scripts, the documented dev or run command.
 3. A generic tool your harness offers: a browser, a terminal session you can drive, an HTTP client, computer use.
 4. Tests only.
@@ -28,6 +29,7 @@ For each check, use the strongest of these that can show its outcome:
 Record the level each check reached, and judge the check by what that level showed.
 A lower level is not a failure or inconclusive: it's what the repo and harness made possible.
 Where a check names a surface you couldn't reach, say what would have reached it.
+If the repo has no project skill that drives the app, say "a `verify-<app>` skill (from `/setup-verification`)".
 
 ## Checks
 
